@@ -3,16 +3,14 @@ import Header from './Header';
 import { checkValidData } from '../Utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../Utils/Firebase';
-import './Project.css'
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../Utils/userSlice';
+import { PHOTO_URL } from '../Utils/Constant';
 
 const Login = () => {
 
   const [signupForm, setSignupForm] = useState(false);
   const [errormessage, setErrormessage] = useState()
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const email = useRef(null);
@@ -33,7 +31,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/56185371?v=4&size=64"
+            photoURL: PHOTO_URL
           }).then(() => {
             const {uid,email,displayName,photoURL} = auth.currentUser;
            dispatch(
@@ -43,12 +41,9 @@ const Login = () => {
           displayName:displayName,
           photoURL:photoURL,
         }));
-
-            navigate("/browse")
           }).catch((error) => {
            setErrormessage(error.message)
           });
-          console.log(" sign up user details", user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -61,8 +56,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in 
           const user = userCredential.user;
-          console.log("Login user details", user);
-          navigate("/browse")
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -81,8 +74,7 @@ const Login = () => {
       <div className="absolute">
         <img
           src="https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-ec7df8539eff/d23a1608-7d90-4da1-93d6-bae2fe60a69b/IN-en-20230814-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt=""
-        // style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+          alt="logo" 
         />
       </div>
 
@@ -126,4 +118,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
