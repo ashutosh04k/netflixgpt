@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux';
 const Browse = () => {
 
   const showgptsearch = useSelector(store => store.gptsearch?.currentstate)
-  console.log("state",showgptsearch)
   useNowPlayingMovies();
   usePopularMovies(); 
   useUpcomingMovies();
@@ -20,11 +19,17 @@ const Browse = () => {
   return (
     <div>
       <Header/>
-      {showgptsearch ? (<GptSearch/>) : (<><MainContainer/>
-        <Secondarycontainer/></>)}
-      {/* <GptSearch/>
-      <MainContainer/>
-      <Secondarycontainer/> */}
+      {showgptsearch ? (
+        <>
+        <GptSearch/>
+        </>
+      ) : (
+      <>
+        <MainContainer/>
+        <Secondarycontainer/>
+        </>
+        )}
+    
       </div>
   );
 };
