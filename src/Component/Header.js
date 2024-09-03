@@ -10,7 +10,6 @@ import { changeLanguage } from '../Utils/ConfigSlice';
 
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [currentstate,setCurretstate] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toggleDropdown = () => {
@@ -55,14 +54,14 @@ const Header = () => {
   }, []);
 
   return (
-    <div className='fixed top-0 left-0 w-full h-20 px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between items-center'>
+    <div className='fixed top-0 left-0 w-full h-20 px-8 py-2 z-10 flex flex-col md:flex-row justify-between items-center bg-red' style={{backgroundColor:'black'}}>
       <img
-        className="w-44"
+        className="w-44 mx-auto md:mx-0"
         src={LOGO}
         alt="logo"
       />
       {user && (
-        <div className='flex p-2'>
+        <div className='flex p-2 justify-between'>
           <select className='p-2 m-2 bg-gray-900 text-white rounded-xl' onChange={handleLanguageChange} >
             {SUPPORTED_LANGUAGES.map(lang =>
               <option  key={lang.identifier} value={lang.identifier}> {lang.name}</option>
@@ -70,12 +69,12 @@ const Header = () => {
             
           </select>
           <button  className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg" onClick={handleGptSearch}>
-            GPT Search
+            {showgptsearch ? "HomePage" :  "Gpt Search" }
           </button>
           <div className='relative'>
             <div className='flex items-center p-2 cursor-pointer rounded-full' onClick={toggleDropdown}>
               <img
-                className='w-8 h-8'
+                className='hidden md:block w-8 h-8'
                 alt='usericon'
                 src={user.photoURL}
               />

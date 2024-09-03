@@ -5,16 +5,16 @@ import VideoBackground from './VideoBackground';
 
 const MainContainer = () => {
   const movies = useSelector(store => store.movies?.nowplayingmovies);
-  if(!movies) return null ;
+  if (!movies) return null;
 
   const randomIndex = Math.floor(Math.random() * 10) + 1;
-const mainMovie = movies[randomIndex];
-  const{original_title,overview,id}  = mainMovie;
+  const mainMovie = movies[randomIndex];
+  const { original_title, overview, id } = mainMovie;
 
   return (
-    <div>
-    <VideoTitle title={original_title} overview={overview}/>
-    <VideoBackground movieId={id}/>
+    <div className="pt-[30%] md:pt-0">
+      <VideoTitle title={original_title} overview={overview} />
+      <VideoBackground movieId={id} />
     </div>
   )
 }

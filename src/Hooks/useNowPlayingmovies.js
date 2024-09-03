@@ -20,7 +20,7 @@ const useNowPlayingMovies = () =>{
 
 
   useEffect(() => {
-    getNowPlayingMovies();
+   getNowPlayingMovies();
   }, []);
 }
 
