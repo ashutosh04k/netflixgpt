@@ -54,7 +54,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className='fixed top-0 left-0 w-full h-20 px-8 py-2 z-10 flex flex-col md:flex-row justify-between items-center bg-red' style={{backgroundColor:'black'}}>
+    <div className='fixed top-0 left-0 w-full h-20 px-8 py-2 z-10 flex flex-col md:flex-row justify-between items-center bg-red' style={{backgroundColor:showgptsearch?'black':'transparent'}}>
       <img
         className="w-44 mx-auto md:mx-0"
         src={LOGO}
